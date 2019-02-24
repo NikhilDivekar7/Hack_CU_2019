@@ -48,6 +48,9 @@ while True:
 		lon1 = radians(longitude_array[count - 2])
 		lon2 = radians(longitude_array[count - 1])
 
+		first = (lat1, lon1)
+		sec = (lat2, lon2)
+
 		dlon = lon2 - lon1
 		dlat = lat2 - lat1
 
@@ -62,10 +65,15 @@ while True:
 
 	count = count + 1
 
+gmap1.plot(lattitude_array, longitude_array, 'cornflowerblue', edge_width=2.5)
+
 for i in range(size):
 	gmap1.marker(lattitude_array[i], longitude_array[i], 'cornflowerblue')
 
-print(Total_distance)
+print("Distance: " + str(Total_distance))
+
+print("Speed: " + str((Total_distance * 1000)/(size * 3)) + "m/s")
+
 #gmap1.plot(40.0102, -105.2424, 'cornflowerblue', edge_width=10)
 
 #gmap1.scatter(40.0102, -105.2424, '#FF0000', size=30, marker = True)
@@ -75,3 +83,5 @@ print(Total_distance)
 gmap1.draw("map11.html")
 
 webbrowser.open("map11.html", new = 0)
+
+firebase.delete('https://hackcu-36162.firebaseio.com', 'hackcu-36162')
